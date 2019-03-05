@@ -1,0 +1,19 @@
+<div class="user-profile">
+  <div class="icon text-center">
+        <% if @user.image? %>
+        　　<%= image_tag @user.image.thumb.url %>
+        <% else %>
+        　　<%= image_tag 'noimage.gif' %>
+        <% end %>
+  </div>
+  <div class="name text-center">
+    <h1><%= @user.name %></h1>
+  </div>
+  <div class="like text-center">
+      <h3><%#= @user.reviews.like_user.count %></h3>
+  </div>
+  <div class="stock text-center">
+      <h3><%#= @user.reviews.stock_user.count %></h3>
+  </div>
+</div>
+
