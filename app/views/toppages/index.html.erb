@@ -1,12 +1,15 @@
-<% content_for :cover do %>
-  <div class="cover">
-    <div class="cover-inner">
-      <div class="cover-contents">
-        <h1>Share Moviesへようこそ！</h1>
-        <a href="" class="btn btn-success btn-lg">会員登録(初めての方)はこちら</a>
+<% if logged_in?  %>
+<p>a</p>
+<%  else  %>  
+  <% content_for :cover do %>
+    <div class="cover">
+      <div class="cover-inner">
+        <div class="cover-contents">
+          <h1>Share Moviesへようこそ！</h1>
+          <%= link_to '会員登録(初めての方)はこちら', signup_path, class: 'btn btn-success btn-lg' %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
-
+  <% end %>
+<% end %>  
 <p>テスト</p>

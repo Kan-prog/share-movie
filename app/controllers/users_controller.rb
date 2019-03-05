@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:show, :edit, :update]
   def show
     @user = User.find(params[:id])
   end
@@ -26,7 +27,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
    
-    #編集しようとしてるユーザーがログインユーザーとイコールかをチェック
     if current_user == @user
    
       if @user.update(user_params)
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
   
     #ストロングパラメーター
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation) #:image)
   end
 end
