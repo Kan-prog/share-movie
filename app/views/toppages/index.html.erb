@@ -1,5 +1,5 @@
 <% if logged_in?  %>
-<p>a</p>
+<%= render 'reviews/reviews', reviews: @reviews %>
 <%  else  %>  
   <% content_for :cover do %>
     <div class="cover">

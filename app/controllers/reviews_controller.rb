@@ -28,9 +28,10 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @review = Review.find_by(id: params[:id])
     if @review.update(review_params)
         flash[:success] = "レビューは正常に更新されました"
-        redirect_to @reivew
+        redirect_to @review
     else
         flash.now[:danger] = "レビューは更新されませんでした"
         render :edit

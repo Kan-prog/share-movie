@@ -12,22 +12,22 @@
       <% end %>
 
       <div class="form-group">
-        <%= f.label :title, 'タイトル' %>
+        <%= f.label :title, 'タイトル(50字以下)' %>
         <%= f.text_field :title, class: 'form-control' %>
       </div>
       
       <div class="form-group">
-        <%= f.label :genre, 'ジャンル' %>
+        <%= f.label :genre, 'ジャンル(20字以下)' %>
         <%= f.text_field :genre, class: 'form-control' %>
       </div>
       
       <div class="form-group">
-        <%= f.label :score, '評価' %>
+        <%= f.label :score, '評価(0~5の整数で入力してください)' %>
         <%= f.text_field :score, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :content, 'レビュー文' %>
+        <%= f.label :content, 'レビュー(1000字以下)' %>
         <%= f.text_field :content, class: 'form-control' %>
       </div>
 

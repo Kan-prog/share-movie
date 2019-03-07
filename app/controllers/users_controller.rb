@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :edit, :update, :like_reviews, :stocks_reviews]
   before_action :correct_user, only: [:edit, :update]
   def show
-    @user = User.find_by(id: current_user.id)
+    @user = User.find_by(id: params[:id])
+    @reviews = @user.reviews.page(params[:page])
   end
 
   def new

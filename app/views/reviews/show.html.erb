@@ -1,2 +1,23 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<h1>id = <%= @review.id %> のレビュー詳細ページ</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>idタイトル</th>
+    <td><%= @review.title %></td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td><%= @review.genre %></td>
+  </tr>
+  <tr>
+    <th>評価</th>
+    <td><%= @review.score %></td>
+  </tr>
+  <tr>
+    <th>レビュー文</th>
+    <td><%= @review.content %></td>
+  </tr>
+</table>
+
+<%= link_to 'このレビューを編集する', edit_review_path(@review), class: 'btn btn-default' %>
+<%= link_to 'このレビューを削除する', @review, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
