@@ -45,13 +45,14 @@ class UsersController < ApplicationController
   
   def like_reviews
     @user = User.find_by(id: params[:id])
-    @likes = current_user.like_reviews.page(params[:page])
-    counts(current_user)
+    @like_reviews = @user.like_reviews.page(params[:page])
+    counts(@user)
   end
   
   def stock_reviews
-    @stocks = current_user.stock_reviews.page(params[:page])
-    counts(current_user)
+    @user = User.find_by(id: params[:id])
+    @stock_reviews = @user.stock_reviews.page(params[:page])
+    counts(@user)
   end
   
   private

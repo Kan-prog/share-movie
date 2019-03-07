@@ -12,7 +12,7 @@ class User < ApplicationRecord
     has_many :likes
     has_many :like_reviews, through: :likes, source: :review
     has_many :stocks
-    has_many :stock_reviews, through: :stocks, source: :stock
+    has_many :stock_reviews, through: :stocks, source: :review
     
     def like(review)
         self.likes.find_or_create_by(review_id: review.id)
