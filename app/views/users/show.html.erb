@@ -1,14 +1,23 @@
 <div class="user-profile">
   <div class="icon text-center">
-        <%# if @user.image? %>
-        　　<%#= image_tag @user.image.thumb.url %>
-        <%# else %>
-        　　<%#= image_tag 'noimage.gif' %>
-        <%# end %>
+        <% if @user.image? %>
+          <div class="img-profile">
+        　　<%= image_tag @user.image.url %>
+        　</div>　
+        <% else %>
+          <div class="img-profile">
+            <img src="/noimage.svg">
+          </div>  
+        <% end %>
   </div>
-  <div class="name text-center">
-    <h1><%= @user.name %></h1>
-  </div>
+    <div class="name text-center">
+      <h1>
+        <% if @user == current_user %>
+          <a href="<%= edit_user_path(current_user) %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-cog icon-config　bg-config" aria-hidden="true"></span></a>
+        <% end %>
+        <%= @user.name %>
+      </h1>
+    </div>
   <div class="like text-center">
       <h3><%#= @user.reviews.like_user.count %></h3>
   </div>
@@ -16,4 +25,4 @@
       <h3><%#= @user.reviews.stock_user.count %></h3>
   </div>
 </div>
-
+<%#= render 'reviews/reviews' review: @review %>

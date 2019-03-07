@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show, :edit, :update]
+  before_action :require_user_logged_in, only: [:show, :edit, :update, :like_reviews, :stocks_reviews]
+  before_action :correct_user, only: [:edit, :update]
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: current_user.id)
   end
 
   def new
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
    
       if @user.update(user_params)
         flash[:success] = 'ユーザー情報を編集しました。'
-        render :edit
+        render :show
       else
         flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
         render :edit
@@ -40,12 +41,31 @@ class UsersController < ApplicationController
     else
         redirect_to root_url
     end
-  end  
+  end
+  
+  def like_reviews
+    @user = User.find_by(id: params[:id])
+    @likes = current_user.like_reviews.page(params[:page])
+    counts(current_user)
+  end
+  
+  def stock_reviews
+    @stocks = current_user.stock_reviews.page(params[:page])
+    counts(current_user)
+  end
   
   private
   
     #ストロングパラメーター
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation) #:image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+  end
+  
+  def correct_user
+      @user = User.find_by(id: params[:id])
+      unless @user == current_user
+        flash[:danger] = "権限がありません" 
+        redirect_to user_path
+      end  
   end
 end

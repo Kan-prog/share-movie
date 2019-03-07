@@ -8,16 +8,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-left" href="/"><img src="/images/logo.png" alt="Home"></a>
+      <a href="<%= root_url %>" class="navbar_left","btn btn-default" role="button"><span class="glyphicon glyphicon-home" aria-hidden="true">ホームへ</span></a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <%# 新規投稿 %>
-          <%# 検索 %>
-          <%# ランキング %>
-          <%# プロフィール %>
-          <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+          <%#<div class="btn-group" role="group">%>
+             <a href="<%= new_review_path %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-pencil " aria-hidden="true">レビューを書く</span></a>
+          	 <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-signal " aria-hidden="true">ランキング</span></a>
+          	 <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true">検索する</span></a>
+          	 <a href="<%= user_path(current_user) %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-user" aria-hidden="true">プロフィール</span></a>
+          	 <a href="<%= logout_path %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</span></a>
+          <%#</div>%>
         <% else %>
           <li><%= link_to '会員登録', signup_path %></li>
           <li><%= link_to'ログイン', login_path %></li>

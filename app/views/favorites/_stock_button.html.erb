@@ -1,0 +1,13 @@
+<% if current_user.stock?(review) %>
+  <%= form_tag(favorite_path(review.id), method: :delete) do %>
+    <%= hidden_field_tag :review_id, review.id %>
+    <%= hidden_field_tag :type, 'Stock' %>
+    <%= submit_tag 'Unstock', class: 'btn btn-success' %>
+  <% end %>
+<% else %>
+  <%= form_tag(favorites_path) do %>
+    <%= hidden_field_tag :review_id, review.id %>
+    <%= hidden_field_tag :type, 'Stock' %>
+    <%= submit_tag 'Stock it', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
