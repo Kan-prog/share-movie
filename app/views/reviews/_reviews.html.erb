@@ -1,15 +1,28 @@
+<%#= render 'search_form' %>
 <ul class="media-list">
   <% reviews.each do |review| %>
     <li class="media">
-      <div class="media-body">
-        <div class="media-left">
+      <div class="media-left">
           <%= image_tag review.user.image.url %>
-        </div>  
+      </div>    
+      <div class="media-body">
         <div>
           <%= link_to review.user.name, user_path(review.user) %> <span class="text-muted">posted at <%= review.created_at %></span>
         </div>
         <div>
-          <p><%= review.content %></p>
+          <h3>投稿者：<%= review.title %></h>
+          <h4>ジャンル：<%= review.genre %></h4>
+          <p>評価：<%= review.score %></p>
+          <p>レビュー：<%= review.content %></p>
+        </div>
+        <div>
+          <% if current_user == review.user %>
+            <%= link_to "Delete", review, method: :delete, data: { confirm: "本当に削除してよろしいですか？?" }, class: 'btn btn-danger btn-xs' %>
+          <%  else  %>
+            <%= render 'favorites/like_button', review: review %>
+            <%= render 'favorites/stock_button', review: review %>
+          <% end %>
+            
         </div>
       </div>
     </li>

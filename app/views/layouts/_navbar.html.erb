@@ -15,10 +15,13 @@
         <% if logged_in? %>
           <%#<div class="btn-group" role="group">%>
              <a href="<%= new_review_path %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-pencil " aria-hidden="true">レビューを書く</span></a>
-          	 <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-signal " aria-hidden="true">ランキング</span></a>
+          	 <a href="<%= rankings_like_url  %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-signal " aria-hidden="true">ランキング</span></a>
           	 <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true">検索する</span></a>
           	 <a href="<%= user_path(current_user) %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-user" aria-hidden="true">プロフィール</span></a>
-          	 <a href="<%= logout_path %>" class="btn btn-default" role="button"><span class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</span></a>
+          	 <a href="<%= logout_path %>" class="btn btn-default" role="button" data-method="delete"><span class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</span></a>
+          	 <%#= link_to logout_path, class: "btn btn-default", role: "button", method: :delete do %>
+          	   <!--<span class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</span>-->
+          	 <%# end %>
           <%#</div>%>
         <% else %>
           <li><%= link_to '会員登録', signup_path %></li>

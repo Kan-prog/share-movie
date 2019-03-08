@@ -2,6 +2,15 @@ class ReviewsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
   
+  def index
+    @q = Review.ransack(params[:q])
+    @reviews = @q.result.includes(:articles).page(params[:page])
+  end
+  
+  def search
+    @q = Review.search(search_params)
+    @reviews = @q.result(distinct: true)
+  end
   
   def new
     @review = Review.new
@@ -56,5 +65,9 @@ class ReviewsController < ApplicationController
          flash[:danger] = "権限がありません"        
          redirect_to root_url
        end
+  end
+  
+  def search_params
+    params.require(:q).permit(:title_cont)
   end
 end  

@@ -1,0 +1,32 @@
+<h1>共感ランキング</h1>
+<%#  =begin  %>
+<% if @reviews.present? %>
+  <div class="row">
+    <% @reviews.each_with_index do |review, index| %>
+      <div class="review">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <img src="<%= review.user.image.url %>" alt="" >
+            </div>
+            <div class="panel-body">
+              <p class="review-title"><%= link_to review.title, review %></p>
+              <p class="review-genre"><%= review.genre %></p>
+              <p class="review-score"><%=review.score %></p>
+              <div class="buttons text-center">
+                <% if logged_in? %>
+                  <%= render 'favorites/like_button', review: review %>
+                  <%= render 'favorites/stock_button', review: review %>                  
+                <% end %>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <p class="text-center"><%= index+1 %>位: <%= @ranking_counts[review.id] %> Likes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<%# =end  %>

@@ -1,4 +1,4 @@
-<% if current_user.stock?(review) %>
+<% if current_user.stock_review?(review) %>
   <%= form_tag(favorite_path(review.id), method: :delete) do %>
     <%= hidden_field_tag :review_id, review.id %>
     <%= hidden_field_tag :type, 'Stock' %>

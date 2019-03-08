@@ -23,7 +23,7 @@ class User < ApplicationRecord
         like.destroy if like
     end
     
-    def like_review?
+    def like_review?(review)
         self.like_reviews.include?(review)
     end
     
@@ -36,7 +36,7 @@ class User < ApplicationRecord
         stock.destroy if stock
     end
     
-    def stock_review?
+    def stock_review?(review)
         self.stock_reviews.include?(review)
     end
 end
