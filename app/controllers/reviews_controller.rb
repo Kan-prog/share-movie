@@ -2,15 +2,15 @@ class ReviewsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
   
-  def index
-    @q = Review.ransack(params[:q])
-    @reviews = @q.result.includes(:articles).page(params[:page])
-  end
+  #def index
+   # @q = Reivew.ransack(params[:q])
+    #@reviews = @q.result(distinct: true).page(params[:page])
+  #end
   
-  def search
-    @q = Review.search(search_params)
-    @reviews = @q.result(distinct: true)
-  end
+  #def search
+   # @q = Review.search(search_params)
+    #@reviews = @q.result(distinct: true).page(params[:page])
+  #end
   
   def new
     @review = Review.new
@@ -68,6 +68,6 @@ class ReviewsController < ApplicationController
   end
   
   def search_params
-    params.require(:q).permit(:title_cont)
+    params.require(:q).permit(:title_cont, :genre_cont, :score_cont)
   end
 end  

@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
+    @reviews = @user.reviews.page(params[:page])
    
     if current_user == @user
    

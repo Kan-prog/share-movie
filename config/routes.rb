@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   
   get 'search', to: 'reviews#search' 
+  
   resources :reviews, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do
       get :like_users
