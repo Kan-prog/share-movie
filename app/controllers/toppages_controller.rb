@@ -2,7 +2,7 @@ class ToppagesController < ApplicationController
   def index
     if logged_in?
       @user = User.find_by(id: params[:id])
-      @reviews = Review.order(created_at: :desc).page(params[:page])
+      @reviews = Review.order(created_at: :desc).page(params[:page]) 
     else
       @user = nil
       @reviews = Review.order(created_at: :desc).page(params[:page])
